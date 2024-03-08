@@ -1,4 +1,4 @@
-import { createEffect, createEvent, createStore, sample } from 'effector'
+import { createEffect, createEvent, createStore } from 'effector'
 import { EffectCreatorFn, Queue, QueueConfig } from './createQueue.h'
 
 const defaultConfig = {
@@ -6,6 +6,10 @@ const defaultConfig = {
   name: 'queue'
 }
 
+/**
+ * Creates a queue with the given configuration.
+ * @param {QueueConfig} config - optional configuration for the queue
+ */
 export function createQueue(
   config?: QueueConfig
 ): Queue {
@@ -27,15 +31,14 @@ export function createQueue(
       isPending = false
       return
     }
-
     const task = taskQueue.shift()
     if (!task) {
       return
     }
+  
     const currentTime = Date.now()
     const timeSinceLastTask = currentTime - lastTaskTime
     const delay = Math.max(0, minInterval - timeSinceLastTask)
-
     lastTask = new Promise((resolve) => {
       pendingChanged(true)
       setTimeout(() => {
