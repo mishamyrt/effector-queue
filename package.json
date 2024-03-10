@@ -1,8 +1,7 @@
 {
   "name": "effector-queue",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Library for sequential effect execution",
-  "type": "module",
   "scripts": {
     "test": "vitest --run",
     "build": "vite build",
@@ -31,7 +30,8 @@
   "peerDependencies": {
     "effector": "^23"
   },
-  "main": "dist/effector-queue.main.js",
+  "main": "dist/effector-queue.cjs.js",
+  "module": "dist/effector-queue.es.js",
   "types": "dist/effector-queue.d.ts",
   "files": [
     "dist",

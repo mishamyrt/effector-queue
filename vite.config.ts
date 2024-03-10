@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [dts({ rollupTypes: true })],
   build: {
     lib: {
-      formats: ['es'],
+      formats: ['es', 'cjs'],
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'effector-queue',
       fileName: (format) => `effector-queue.${format}.js`
