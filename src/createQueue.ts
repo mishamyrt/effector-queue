@@ -1,5 +1,11 @@
 import { createEffect, createEvent, createStore } from 'effector'
-import { EffectCreatorFn, Queue, QueueConfig } from './createQueue.h'
+import type {
+  EffectCreatorParam,
+  EffectCreatorFn,
+  Queue,
+  QueueConfig,
+  EffectHandlerFn
+} from './createQueue.h'
 
 const defaultConfig = {
   minInterval: 0,
@@ -10,7 +16,7 @@ const defaultConfig = {
  * Creates a queue with the given configuration.
  * @param {QueueConfig} config - optional configuration for the queue
  */
-export function createQueue(
+export function createQueue (
   config?: QueueConfig
 ): Queue {
   const {
@@ -35,7 +41,7 @@ export function createQueue(
     if (!task) {
       return
     }
-  
+
     const currentTime = Date.now()
     const timeSinceLastTask = currentTime - lastTaskTime
     const delay = Math.max(0, minInterval - timeSinceLastTask)
@@ -53,9 +59,9 @@ export function createQueue(
   }
 
   const createQueueEffect: EffectCreatorFn = <Params, Done, Fail = Error>(
-    handlerOrConfig
+    handlerOrConfig: EffectCreatorParam<Params, Done, Fail>
   ) => {
-    let handler
+    let handler: EffectHandlerFn<Params, Done, Fail>
     let effectName
     if (handlerOrConfig instanceof Function) {
       handler = handlerOrConfig

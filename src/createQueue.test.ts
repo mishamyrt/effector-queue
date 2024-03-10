@@ -1,10 +1,11 @@
 import { createQueue } from './createQueue'
 import { describe, it, expect } from 'vitest'
 
-export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+export const sleep = async (ms: number) =>
+  await new Promise((resolve) => setTimeout(resolve, ms))
 
 describe('createQueue', () => {
-  it('should execute tasks in queue one by one', async() => {
+  it('should execute tasks in queue one by one', async () => {
     const [createQueueEffect] = createQueue()
     const result: number[] = []
 
@@ -32,7 +33,6 @@ describe('createQueue', () => {
     expect(result).toEqual([1, 2, 3, 4, 5, 6])
   })
 
-
   it('should work with same effect called multiple times', async () => {
     const [createQueueEffect] = createQueue()
     const result: number[] = []
@@ -51,5 +51,3 @@ describe('createQueue', () => {
     expect(result).toEqual([1, 2, 1, 2, 1, 2])
   })
 })
-
-
