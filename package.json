@@ -1,8 +1,7 @@
 {
-  "name": "effector-mutex",
+  "name": "effector-queue",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Library for sequential effect execution",
   "scripts": {
     "test": "vitest --run",
     "build": "vite build",
@@ -27,5 +26,13 @@
   },
   "peerDependencies": {
     "effector": "^23"
-  }
+  },
+  "main": "dist/effector-queue.cjs.js",
+  "module": "dist/effector-queue.es.js",
+  "types": "dist/effector-queue.d.ts",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ]
 }
