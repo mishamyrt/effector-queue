@@ -8,8 +8,8 @@ env:
   PNPM_VERSION: '8.13.1'
 
 jobs:
-  lint:
-    name: Lint
+  test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
